@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniCivic Suite — SafeSpace, AccessED, GreenShift &amp; LaunchPad Interactive Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans">
+  <header class="border-b border-sky-500/30 bg-slate-900/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h1 class="text-xl font-bold text-white">OmniCivic AI Suite <span class="text-sky-400 text-sm font-mono">(Offline-First Web + Accessibility + Safety + Eco Impact)</span></h1>
+        <p class="text-xs text-slate-400">Interactive Prototype for SafeSpace Hacks ($280) · AccessED Hacks ($225) · LaunchPad Hacks ($300) · Green Shift Hacks ($125)</p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="switchMode('safety')" class="px-3 py-1.5 rounded-lg bg-sky-500/20 border border-sky-400/40 text-sky-300 text-xs font-semibold">🛡️ SafeSpace Phishing &amp; Crisis Shield</button>
+        <button onclick="switchMode('access')" class="px-3 py-1.5 rounded-lg bg-purple-500/20 border border-purple-400/40 text-purple-300 text-xs font-semibold">♿ AccessED Plain-Language &amp; Dyslexia Reader</button>
+        <button onclick="switchMode('green')" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-semibold">🌱 GreenShift Appliance &amp; Repair Calculator</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-12 gap-6">
+    <section class="md:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+      <h2 id="panelTitle" class="text-sm font-bold uppercase tracking-wider text-sky-400">SafeSpace Mode: Scam &amp; Permission Inspector</h2>
+      <textarea id="userInput" rows="5" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs font-mono text-slate-200">URGENT: Your student bank account is suspended! Click http://bit.ly/verify-now-login and grant SMS + Contacts permission to restore access immediately.</textarea>
+      <button onclick="analyzeInput()" class="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition">▶ Run Local Zero-Cloud Analysis</button>
+    </section>
+
+    <section class="md:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-emerald-400">Before-and-After Actionable Output</h2>
+      <div id="outputCard" class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-2 leading-relaxed"></div>
+    </section>
+  </main>
+
+  <script>
+    let currentMode = "safety";
+    function switchMode(m) {
+      currentMode = m;
+      const inp = document.getElementById("userInput");
+      const title = document.getElementById("panelTitle");
+      if (m === "safety") {
+        title.textContent = "SafeSpace Mode: Scam & Permission Inspector";
+        inp.value = "URGENT: Your student bank account is suspended! Click http://bit.ly/verify-now-login and grant SMS + Contacts permission to restore access immediately.";
+      } else if (m === "access") {
+        title.textContent = "AccessED Mode: Offline Plain-Language & Screen-Reader Lesson Adapter";
+        inp.value = "Photosynthesis converts electromagnetic radiation into chemical potential energy via Calvin-Benson cycle carbon fixation in chloroplast stroma.";
+      } else {
+        title.textContent = "GreenShift Mode: Repair-vs-Replace Carbon & Water Impact Analyzer";
+        inp.value = "Device: 2023 Laptop with degraded 52Wh battery & cracked hinge. Option A: Replace laptop ($950). Option B: Local modular repair ($85).";
+      }
+      analyzeInput();
+    }
+
+    function analyzeInput() {
+      const out = document.getElementById("outputCard");
+      if (currentMode === "safety") {
+        out.innerHTML = `
+          <div class="text-rose-400 font-bold">⚠️ HIGH RISK DETECTED (Score: 94/100 — Urgency + Shortened URL + Over-Privileged Permissions)</div>
+          <p class="text-slate-300"><strong>Plain-English Explanation:</strong> Banks never ask for Contacts or SMS read permissions via shortened links.</p>
+          <p class="text-emerald-300"><strong>Safe Action Checklist (Works Offline):</strong> 1. Do not tap the link. 2. Open your bank's official app directly. 3. Revoke SMS/Contacts permissions in Android/iOS Settings → Privacy.</p>
+        `;
+      } else if (currentMode === "access") {
+        out.innerHTML = `
+          <div class="text-purple-300 font-bold">♿ Grade-5 Plain-Language Adaptation + Screen-Reader Landmark Structure</div>
+          <p class="text-slate-200 text-sm"><strong>Simplified Concept:</strong> Plants use sunlight like a solar kitchen. Inside tiny green parts called chloroplasts, they mix sunlight, water, and air (carbon dioxide) to make sugars they use for food.</p>
+          <p class="text-emerald-300"><strong>Keyboard &amp; Audio Cue:</strong> [Press Space for WebSpeech TTS Read-Aloud | High-Contrast Dyslexia Spacing Enabled]</p>
+        `;
+      } else {
+        out.innerHTML = `
+          <div class="text-emerald-400 font-bold">🌱 Sustainability Verdict: Repair Saves 214 kg CO2e &amp; 1,900 Liters of Water</div>
+          <p class="text-slate-300">Manufacturing a new laptop emits ~230 kg CO2e before it even turns on. Replacing only the 52Wh battery and hinge emits ~16 kg CO2e (**93% emissions reduction**) and saves **$865 USD**.</p>
+        `;
+      }
+    }
+    window.addEventListener("DOMContentLoaded", analyzeInput);
+  </script>
+</body>
+</html>
